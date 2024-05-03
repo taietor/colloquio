@@ -1,0 +1,18 @@
+async function test(ctx) {
+    // Impostare la data corrente
+    const currentDate = new Date();
+
+
+    var activities = await Activity.query(ctx.knex).where('activities.date', '>=', currentDate);
+
+    // Contare il numero di attività di tipo "training"
+    var trainingCount = 0;
+    activities.forEach(activity => {
+        if (activity.activity_type === 'training') {
+            trainingCount++;
+        }
+    });
+
+    return trainingCount;
+}
+

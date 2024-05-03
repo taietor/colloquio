@@ -1,0 +1,23 @@
+module.exports = async (ctx) => {
+  const employeesToUpdate = ctx.params.rawData.employees;
+
+  // Ottenere gli id degli impiegati da aggiornare
+  const employeeIds = employeesToUpdate.map((extEmployee) => extEmployee.id);
+
+  // Eseguire una singola query per ottenere tutti gli impiegati da aggiornare
+  const employees = await Employee.query(knex).whereIn('id', employeeIds);
+
+  // Aggiornare ciascun impiegato
+  await Promise.all(
+    employees.map(async (employee) => {
+      const extEmployee = employeesToUpdate.find((e) => e.id === employee.id);
+      const employeeDateOfBirth = Date.parse(extEmployee.date_of_birth);
+
+      await employee.$query(knex).patch({
+        date_of_birth: employeeDateOfBirth,
+      });
+    })
+  );
+
+  return { success: true };
+};

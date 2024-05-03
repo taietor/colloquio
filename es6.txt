@@ -1,0 +1,8 @@
+SELECT employees.lastname, employees.firstname
+FROM employees
+INNER JOIN employee_contacts ON employee_contacts.employee_id = employees.id
+INNER JOIN activity_employees ON activity_employees.employee_id = employees.id
+INNER JOIN activities ON activities.id = activity_employees.activity_id
+WHERE activities.activity_kind = 'training';
+Le correzioni apportate sono:activity_employees mancava un ON per specificare la condizione di join.La clausola INNER JOIN activity_employees era scritta in modo errato.
+Il confronto del tipo di attività (activity_kind) nel WHERE deve essere fatto rispetto alla tabella activities, non employee_contacts.

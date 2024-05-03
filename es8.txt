@@ -1,0 +1,22 @@
+async function test(ctx) {
+  const activities = await Activity.query(ctx.knex).where(
+    "activity_kind",
+    "training"
+  );
+  let tot = 0;
+
+  if (activities.length > 0) {
+    const promises = activities.map(async (activity) => {
+      const employeesCount = await ActivityEmployee.query(ctx.knex).where(
+        "activity_id",
+        activity.id
+      ).length;
+      return employeesCount;
+    });
+
+    const employeesCounts = await Promise.all(promises);
+    tot = employeesCounts.reduce((acc, curr) => acc + curr, 0);
+  }
+
+  return tot;
+}

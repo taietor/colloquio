@@ -1,0 +1,25 @@
+//es 9
+// errore usando whereRaw
+async function test(ctx, field, value) {
+  try {
+    const employees = await Employee.query().where(field, value);
+
+    let employeeCount = 0;
+
+   
+    employees.forEach((employee) => {
+    
+      const employeeDOB = new Date(employee.date_of_birth);
+
+     
+      if (employeeDOB > new Date('2000-01-01')) {
+        employeeCount += 1;
+      }
+    });
+
+    return employeeCount;
+  } catch (error) {
+    console.error('Errore durante l\'esecuzione della funzione test:', error);
+    return 0; 
+  }
+}

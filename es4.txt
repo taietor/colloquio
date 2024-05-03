@@ -1,0 +1,19 @@
+Sicurezza: Entrambi i sistemi devono garantire un livello adeguato di sicurezza per proteggere i dati sensibili durante lo scambio attraverso le API.Come Oauth per le autenticazioni
+Performance: Le prestazioni dell'interfaccia sono importanti per assicurare che lo scambio di dati avvenga in modo efficiente e senza ritardi eccessivi.
+Controllo bug e documentazione.
+a. Il nostro sistema espone un’API che il sistema esterno chiama:
+PRO:
+Controllo completo: Avendo il controllo sull'API esposta, è possibile gestire e regolare le funzionalità, la sicurezza e le prestazioni in base alle proprie esigenze.
+Monitoraggio facilitato: Poiché l'API è interna, il monitoraggio delle richieste e delle prestazioni può essere più diretto e dettagliato.
+CONTRO:
+Maggiore complessità: La gestione di un'API esposta richiede un lavoro aggiuntivo per lo sviluppo, il testing e la manutenzione.
+Potenziale sovraccarico del sistema: Se l'API non è adeguatamente ottimizzata, potrebbe causare sovraccarichi o ritardi nel sistema principale.
+
+b. Il sistema esterno espone tramite API i dati che noi andremo a chiamare:
+PRO:
+Riduzione del carico di lavoro: Non è necessario sviluppare e mantenere un'API esposta, riducendo così il carico di lavoro di sviluppo e manutenzione.
+Maggiore flessibilità: Se il sistema esterno offre API ben documentate e stabili, è possibile integrarle facilmente nel proprio sistema.
+Scalabilità: Utilizzando le API esterne, è possibile sfruttare l'infrastruttura e le risorse del sistema esterno per gestire i carichi di lavoro.
+CONTRO:
+Dipendenza esterna: Il funzionamento del proprio sistema dipende dall'affidabilità e dalla disponibilità del sistema esterno.
+Limitazioni e vincoli: Le API esterne potrebbero avere limitazioni di accesso, rate limit e vincoli di utilizzo che potrebbero influenzare le prestazioni o le funzionalità del proprio sistema.
